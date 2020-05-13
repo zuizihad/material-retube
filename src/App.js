@@ -10,6 +10,9 @@ class App extends React.Component {
         videos: [],
         selectedVideo: null,
     }
+    componentDidMount() {
+        this.handleSubmit('fullstack javascript')
+    }
 
     handleSubmit = async (searchTerm) => {
         const response = await youtube.get('search', {
@@ -20,12 +23,14 @@ class App extends React.Component {
                 q: searchTerm
             }
             })
-            this.setState({ video: response.data.items, selectedVideo: response.data.items[0]})
-            
-
+            this.setState({ video: response.data.items, selectedVideo: response.data.items[0]})      
     }
+    onVideoSelect = (video) => {
+        this.setState({ selectedVideo: video})
+    }
+
     render() {
-        const selectedVideo = this.state;
+        const {selectedVideo, videos} = this.state;
         return(
             <Grid justify="center" container spacing={10}>
                 <Grid item xs={12}>
@@ -37,7 +42,7 @@ class App extends React.Component {
                             <VideoDetails video={selectedVideo }/>
                         </Grid>
                         <Grid item xs={4}>
-                           <VideoList videos={videos}/>
+                           <VideoList videos={videos} onVideoSelect={this.onVideoSelect}/>
                         </Grid>
                     </Grid>
                 </Grid>
