@@ -1,13 +1,13 @@
 import React from 'react'
 import  { Grid } from '@material-ui/core'
-import {SearchBar, VideoDetails } from './components'
+import {SearchBar, VideoDetails, VideoList } from './components'
 
 import youtube from './api/youtube'
 
 class App extends React.Component {
 
     state = {
-        video: [],
+        videos: [],
         selectedVideo: null,
     }
 
@@ -37,7 +37,7 @@ class App extends React.Component {
                             <VideoDetails video={selectedVideo }/>
                         </Grid>
                         <Grid item xs={4}>
-                            {/* videolist */}
+                           <VideoList videos={videos}/>
                         </Grid>
                     </Grid>
                 </Grid>
