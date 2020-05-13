@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import { Paper, TextField } from '@material-ui/core'
-
 class SearchBar extends Component {
     state = {
         searchTerm: '',
     }
-
     handleChange = (event) => {
         this.setState({searchTerm: event.target.value})
     }

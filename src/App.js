@@ -17,13 +17,13 @@ class App extends React.Component {
     handleSubmit = async (searchTerm) => {
         const response = await youtube.get('search', {
             params: {
-                part: 'snipet',
+                part: 'snippet',
                 maxResults: 5,
                 key:'AIzaSyBJ0MfIC5Od8I6qtEZ2DGhmaWjnvSfxtYo',
-                q: searchTerm
+                q: searchTerm,
             }
-            })
-            this.setState({ video: response.data.items, selectedVideo: response.data.items[0]})      
+            });
+            this.setState({ videos: response.data.items, selectedVideo: response.data.items[0]})      
     }
     onVideoSelect = (video) => {
         this.setState({ selectedVideo: video})
